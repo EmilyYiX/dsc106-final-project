@@ -23,6 +23,7 @@
       });
       return acc;
     }, []);
+    
 
     console.log(data); // To check the transformed data
   });
