@@ -60,7 +60,7 @@
               .attr('y', 6)
               .attr('dy', '.75em')
               .style('font-size', '10px')
-              .text('Climate Change (°C)');
+              .text('Temperature Change (°C)');
 
     svgElement.append('text')
               .attr('x', (width / 2))             
