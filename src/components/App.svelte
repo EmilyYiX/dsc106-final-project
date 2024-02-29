@@ -1,34 +1,32 @@
 <script>
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
-  import Graph from './Graph.svelte';
+  import Graph from './Graph.svelte'; // Ensure this path matches your file structure
 
   let data = [];
 
   onMount(async () => {
-    const csvPath = 'Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature_577579683071085080.csv';
-    const res = await fetch(csvPath);
-    const csv = await res.text();
-    const rawData = d3.csvParse(csv);
-
-    // Transform data from wide to long format
-    data = rawData.reduce((acc, row) => {
-      const { Country, ISO2, ISO3, Indicator, Unit, Source, ...years } = row;
-      Object.keys(years).forEach(year => {
-        acc.push({
-          country: Country,
-          year: +year,
-          metric: +years[year]
-        });
+    const response = await fetch('Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature_577579683071085080.csv');
+    const text = await response.text();
+    const parsed = d3.csvParse(text, d => {
+      const result = [];
+      Object.keys(d).forEach(key => {
+        if (!isNaN(Date.parse(key))) { // Ensure the key is a year
+          result.push({
+            country: d.Country,
+            year: +key,
+            tempChange: +d[key]
+          });
+        }
       });
-      return acc;
-    }, []);
-    
-
-    console.log(data); // To check the transformed data
+      return result;
+    });
+    data = parsed.flat(); // Flatten the array of arrays
   });
 </script>
 
 <main>
-  <Graph {data} />
+  {#if data.length > 0}
+    <Graph {data} />
+  {/if}
 </main>
