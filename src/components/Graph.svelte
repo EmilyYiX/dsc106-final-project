@@ -43,6 +43,40 @@
     svgElement.append('g')
               .attr('transform', `translate(0,${height})`)
               .call(xAxis);
+
+    // Append X axis label
+    svgElement.append("text")
+              .attr("transform", `translate(${width / 2},${height + margin.top + 20})`)
+              .style("text-anchor", "middle")
+              .attr('transform', `translate(0,${height})`)
+              .attr('x', width / 2)
+              .attr('y', margin.bottom) 
+              .text("Year");
+
+    svgElement.append('g').call(yAxis);
+
+    // Append Y axis label
+    svgElement.append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 0 - margin.left)
+              .attr("x", 0 - (height / 2))
+              .attr("dy", "1em")
+              .style("text-anchor", "middle")
+              .text("Temperature Change (°C)");
+
+    // Append chart title
+    svgElement.append("text")
+              .attr("x", (width / 2))             
+              .attr("y", 10 - (margin.top / 2))
+              .attr("text-anchor", "middle")  
+              .style("font-size", "16px") 
+              .style("text-decoration", "underline")  
+              .text("Temperature Change (°C) Over Years Globally");
+
+    // Append axes to the SVG container
+    svgElement.append('g')
+              .attr('transform', `translate(0,${height})`)
+              .call(xAxis);
     svgElement.append('g').call(yAxis);
 
     // Initial chart update with filtered data
@@ -115,5 +149,7 @@
   });
 </script>
 
-<input type="text" id="countrySearch" placeholder="Search countries..." bind:this={inputElement}>
+<div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
+  <input type="text" id="countrySearch" placeholder="Search countries..." bind:this={inputElement}>
+</div>
 <svg bind:this={svg} width="960" height="500"></svg>
