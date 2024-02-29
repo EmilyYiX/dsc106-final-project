@@ -30,3 +30,4 @@
     <Graph {data} />
   {/if}
 </main>
+

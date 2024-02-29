@@ -46,6 +46,28 @@
               .attr('stroke', 'steelblue')
               .attr('stroke-width', 1.5)
               .attr('d', line);
+
+    svgElement.append('text')
+              .attr('text-anchor', 'end')
+              .attr('x', width)
+              .attr('y', height - 6)
+              .style('font-size', '15px')
+              .text('Year');
+
+    svgElement.append('text')
+              .attr('text-anchor', 'end')
+              .attr('transform', 'rotate(-90)')
+              .attr('y', 6)
+              .attr('dy', '.75em')
+              .style('font-size', '10px')
+              .text('Climate Change (°C)');
+
+    svgElement.append('text')
+              .attr('x', (width / 2))             
+              .attr('y', 10 - (margin.top / 2))
+              .attr('text-anchor', 'middle')  
+              .style('font-size', '22px') 
+              .text('Climate Change over Time Globally');
   });
 </script>
 
