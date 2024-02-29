@@ -1,59 +1,51 @@
 <script>
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
+
   export let data;
 
   let svg;
-  const margin = { top: 20, right: 20, bottom: 30, left: 50 },
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
-  
+
   onMount(() => {
-    if (data && data.length > 0) {
-      const svgElement = d3.select(svg)
-                           .attr('viewBox', `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
-                           .append('g')
-                           .attr('transform', `translate(${margin.left},${margin.top})`);
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    const width = 960 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+    
+    // Filter data for one country as an example
+    const countryData = data.filter(d => d.country);
 
-      const xScale = d3.scaleLinear()
-                       .domain(d3.extent(data, d => d.year))
-                       .range([0, width]);
+    const x = d3.scaleLinear()
+                .domain(d3.extent(countryData, d => d.year))
+                .range([0, width]);
 
-      const yScale = d3.scaleLinear()
-                       .domain([-3,5])
-                       .nice()
-                       .range([height, 0]);
+    const y = d3.scaleLinear()
+                .domain([d3.min(countryData, d => d.tempChange), d3.max(countryData, d => d.tempChange)])
+                .range([height, 0]);
 
-      const xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d'));
-      const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(x).tickFormat(d3.format('d'));
+    const yAxis = d3.axisLeft(y);
 
-      svgElement.append('g')
-                 .attr('transform', `translate(0,${height})`)
-                 .call(xAxis);
+    const line = d3.line()
+                   .x(d => x(d.year))
+                   .y(d => y(d.tempChange));
 
-      svgElement.append('g')
-                 .call(yAxis);
+    const svgElement = d3.select(svg)
+                         .append('g')
+                         .attr('transform', `translate(${margin.left},${margin.top})`);
 
-      // Group data by country
-      const dataGrouped = d3.group(data, d => d.country);
+    svgElement.append('g')
+              .attr('transform', `translate(0,${height})`)
+              .call(xAxis);
 
-      const lineGenerator = d3.line()
-                              .x(d => xScale(d.year))
-                              .y(d => yScale(d.metric));
+    svgElement.append('g')
+              .call(yAxis);
 
-      // Color scale for different countries
-      const color = d3.scaleOrdinal(d3.schemeCategory10);
-
-      // Draw lines for each country
-      svgElement.selectAll('.line')
-                 .data(dataGrouped)
-                 .enter()
-                 .append('path')
-                 .attr('fill', 'none')
-                 .attr('stroke', (d, i) => color(i))
-                 .attr('stroke-width', 2)
-                 .attr('d', d => lineGenerator(d[1]));
-    }
+    svgElement.append('path')
+              .datum(countryData)
+              .attr('fill', 'none')
+              .attr('stroke', 'steelblue')
+              .attr('stroke-width', 1.5)
+              .attr('d', line);
   });
 </script>
 
