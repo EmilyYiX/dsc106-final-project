@@ -168,3 +168,11 @@
 </div>
 <div id="tooltip" style="position: absolute; opacity: 0; background-color: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="960" height="500"></svg>
+<h1>Writeup</h1>
+<h2>What have we done so far?</h2>
+<p>So far we have setup the project on github and created a basic line plot. We have cleaned the datasets according to the 
+  functionality that we want to implement. As part of cleaning we have dealt with missing values and column labels. We have also 
+  implemented a search box to search for a country and see its temperature change over the years. This is one interactive element 
+  we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on plot. It 
+  shows the country and the temperature change when the cursor is hovered over the line.
+</p>
