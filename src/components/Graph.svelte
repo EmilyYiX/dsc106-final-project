@@ -87,23 +87,37 @@
 
     // Function to update the chart based on selected countries or search
     function updateChart(newData) {
-  // Merge newData with displayedData
-  newData.forEach(newDataItem => {
-    if (!displayedData.some(item => item.country === newDataItem.country)) {
-      displayedData.push(newDataItem);
-    }
+    // Merge newData with displayedData
+    newData.forEach(newDataItem => {
+      if (!displayedData.some(item => item.country === newDataItem.country)) {
+        displayedData.push(newDataItem);
+      }
   });
 
   // Now, use displayedData to update the chart
   const lines = svgElement.selectAll('.line')
     .data(displayedData, d => d.country);
 
-  lines.enter().append('path')
+    lines.enter().append('path')
     .attr('class', 'line')
     .attr('d', d => line(d.values))
     .attr('fill', 'none')
-    .attr('stroke', 'steelblue')
-    .attr('stroke-width', 1.5);
+    .attr('stroke', (d, i) => d3.schemeCategory10[i % 10]) // Optional: Use different colors for lines
+    .attr('stroke-width', 1.5)
+    .on('mouseover', function() { d3.select('#tooltip').style('opacity', 1); })
+    .on('mousemove', function(event, d) {
+      const xPosition = d3.pointer(event, this)[0];
+      const year = Math.round(x.invert(xPosition));
+      const dataPoint = d.values.find(v => v.year === year);
+      if (dataPoint) {
+        d3.select('#tooltip')
+      .html(`Country: ${d.country}<br>Year: ${dataPoint.year}<br>Temperature Change: ${dataPoint.tempChange}°C`)
+      .style('left', `${event.pageX + 10}px`)
+      .style('top', `${event.pageY + 10}px`)
+      .style('opacity', 1);
+      }
+    })
+    .on('mouseout', function() { d3.select('#tooltip').style('opacity', 0); });
 
   // Update existing lines (if any)
   lines.attr('d', d => line(d.values));
@@ -152,4 +166,5 @@
 <div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
   <input type="text" id="countrySearch" placeholder="Search countries..." bind:this={inputElement}>
 </div>
+<div id="tooltip" style="position: absolute; opacity: 0; background-color: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="960" height="500"></svg>
