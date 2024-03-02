@@ -1,15 +1,24 @@
 <script>
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
+  import MultiSelect from 'svelte-multiselect';
 
   export let data;
   let svg;
   let displayedData = [];
-  let inputElement; // Reference for the input element
-  let initialCountries = ['Brazil', 'Nigeria', 'Pakistan', 'Indonesia', 'United States', 'China', 'India'];
+  let countries = ["Afghanistan, Islamic Rep. of", "Albania", "Algeria", "American Samoa", "Andorra, Principality of", "Angola", "Anguilla", "Antigua and Barbuda", "Argentina", "Armenia, Rep. of", "Aruba, Kingdom of the Netherlands", "Australia", "Austria", "Azerbaijan, Rep. of", "Bahamas, The", "Bahrain, Kingdom of", "Bangladesh", "Barbados", "Belarus, Rep. of", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Cayman Islands", "Central African Rep.", "Chad", "Chile", "China, P.R.: Hong Kong", "China, P.R.: Macao", "China, P.R.: Mainland", "Colombia", "Comoros, Union of the", "Congo, Dem. Rep. of the", "Congo, Rep. of", "Cook Islands", "Costa Rica", "Croatia, Rep. of", "Cuba", "Cyprus", "Czech Rep.", "Denmark", "Djibouti", "Dominica", "Dominican Rep.", "Ecuador", "Egypt, Arab Rep. of", "El Salvador", "Equatorial Guinea, Rep. of", "Eritrea, The State of", "Estonia, Rep. of", "Eswatini, Kingdom of", "Ethiopia, The Federal Dem. Rep. of", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji, Rep. of", "Finland", "France", "French Polynesia", "Gabon", "Gambia, The", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Rep. of", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan, Rep. of", "Kenya", "Kiribati", "Korea, Dem. People's Rep. of", "Korea, Rep. of", "Kuwait", "Kyrgyz Rep.", "Lao People's Dem. Rep.", "Latvia", "Lebanon", "Lesotho, Kingdom of", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar, Rep. of", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands, Rep. of the", "Martinique", "Mauritania, Islamic Rep. of", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Rep. of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique, Rep. of", "Myanmar", "Namibia", "Nauru, Rep. of", "Nepal", "Netherlands, The", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Macedonia, Republic of ", "Norway", "Oman", "Pakistan", "Palau, Rep. of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland, Rep. of", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Pierre and Miquelon", "Samoa", "San Marino, Rep. of", "São Tomé and Príncipe, Dem. Rep. of", "Saudi Arabia", "Senegal", "Serbia, Rep. of", "Seychelles", "Sierra Leone", "Singapore", "Slovak Rep.", "Slovenia, Rep. of", "Solomon Islands", "Somalia", "South Africa", "South Sudan, Rep. of", "Spain", "Sri Lanka", "St. Kitts and Nevis", "St. Lucia", "St. Vincent and the Grenadines", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Rep.", "Taiwan Province of China", "Tajikistan, Rep. of", "Tanzania, United Rep. of", "Thailand", "Timor-Leste, Dem. Rep. of", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Virgin Islands", "Uruguay", "Uzbekistan, Rep. of", "Vanuatu", "Venezuela, Rep. Bolivariana de", "Vietnam", "Wallis and Futuna Islands", "West Bank and Gaza", "Western Sahara", "World", "Yemen, Rep. of", "Zambia", "Zimbabwe"]
+  let selected = ['Brazil', 'Nigeria', 'Pakistan', 'Indonesia', 'United States', 'China, P.R.: Mainland', 'India'];
+  let svgElement;
+  let line;
+  let x;
+  let y;
 
   // Prepare the initial data filter
-  let filteredData = data.filter(d => initialCountries.includes(d.country));
+  let filteredData;
+
+  function getFilteredData() {
+    return data.filter(d => selected.includes(d.country));
+  }
 
   // Function to restructure data for drawing lines
   function restructureData(data) {
@@ -18,25 +27,26 @@
   }
 
   onMount(() => {
+    filteredData = getFilteredData();
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = 960 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
 
     // Define scales
-    const x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
-    const y = d3.scaleLinear().domain([d3.min(data, d => d.tempChange), d3.max(data, d => d.tempChange)]).range([height, 0]);
+    x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
+    y = d3.scaleLinear().domain([d3.min(data, d => d.tempChange), d3.max(data, d => d.tempChange)]).range([height, 0]);
 
     // Define axes
     const xAxis = d3.axisBottom(x).tickFormat(d3.format('d'));
     const yAxis = d3.axisLeft(y);
 
     // Define the line generator
-    const line = d3.line()
-                   .x(d => x(d.year))
-                   .y(d => y(d.tempChange));
+    line = d3.line()
+      .x(d => x(d.year))
+      .y(d => y(d.tempChange));
 
     // Append SVG container
-    const svgElement = d3.select(svg).append('g')
+    svgElement = d3.select(svg).append('g')
                          .attr('transform', `translate(${margin.left},${margin.top})`);
 
     // Append axes to the SVG container
@@ -81,22 +91,12 @@
 
     // Initial chart update with filtered data
     updateChart(restructureData(filteredData));
+});
 
-    // Listen to country selector changes (if you have a selector in your HTML)
-    d3.select('#countrySelector').on('change', onCountryChange);
-
-    // Function to update the chart based on selected countries or search
-    function updateChart(newData) {
-    // Merge newData with displayedData
-    newData.forEach(newDataItem => {
-      if (!displayedData.some(item => item.country === newDataItem.country)) {
-        displayedData.push(newDataItem);
-      }
-  });
-
-  // Now, use displayedData to update the chart
-  const lines = svgElement.selectAll('.line')
-    .data(displayedData, d => d.country);
+  // Function to update the chart based on selected countries or search
+  function updateChart(newData) {
+    const lines = svgElement.selectAll('.line')
+      .data(newData, d => d.country);
 
     lines.enter().append('path')
     .attr('class', 'line')
@@ -111,60 +111,34 @@
       const dataPoint = d.values.find(v => v.year === year);
       if (dataPoint) {
         d3.select('#tooltip')
-      .html(`Country: ${d.country}<br>Year: ${dataPoint.year}<br>Temperature Change: ${dataPoint.tempChange}°C`)
-      .style('left', `${event.pageX + 10}px`)
-      .style('top', `${event.pageY + 10}px`)
-      .style('opacity', 1);
+        .html(`Country: ${d.country}<br>Year: ${dataPoint.year}<br>Temperature Change: ${dataPoint.tempChange}°C`)
+        .style('left', `${event.pageX + 10}px`)
+        .style('top', `${event.pageY + 10}px`)
+        .style('opacity', 1);
       }
     })
     .on('mouseout', function() { d3.select('#tooltip').style('opacity', 0); });
 
-  // Update existing lines (if any)
-  lines.attr('d', d => line(d.values));
+    // Update existing lines (if any)
+    lines.attr('d', d => line(d.values));
 
-  // Remove lines if their data was removed from displayedData (not required for your current functionality but useful if you implement data removal)
-  lines.exit().remove();
-}
-
-    // Event handler for country selection changes
-    function onCountryChange() {
-      const selectedCountries = d3.select(this).selectAll('option:checked').data();
-      const updatedData = data.filter(d => selectedCountries.includes(d.country));
-      updateChart(restructureData(updatedData));
-    }
-
-    // Event handler for filtering countries via search
-    function filterDataAndDraw(event) {
-      const searchTerm = event.target.value;
-      const updatedData = data.filter(d => d.country.toLowerCase().includes(searchTerm.toLowerCase()));
-      // Assuming updateChart and restructureData are also defined or accessible here
-      updateChart(restructureData(updatedData));
-    }
-
-    // Add the event listener to the input element
-    function handleKeyPress(event) {
-  if (event.keyCode === 13) {
-    const searchTerm = event.target.value.trim();
-    if (searchTerm) {
-      const updatedData = data.filter(d => d.country.toLowerCase() === searchTerm.toLowerCase());
-      const structuredData = restructureData(updatedData); // Ensure this matches the expected structure
-      updateChart(structuredData); // This will now merge the new data
-    }
+    // Remove lines if their data was removed from displayedData (not required for your current functionality but useful if you implement data removal)
+    lines.exit().remove();
   }
-}
 
-    // Change to listen for 'keyup' events
-    inputElement.addEventListener('keyup', handleKeyPress);
+  function update(event){
+    if (event.detail && event.detail.type == 'removeAll'){
+      selected = [];
+    }
+    filteredData = getFilteredData();
+    let restructuredData = restructureData(filteredData);
+    updateChart(restructuredData);
+  }
 
-    // Cleanup
-    return () => {
-      inputElement.removeEventListener('keyup', handleKeyPress);
-    };
-  });
 </script>
 
 <div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
-  <input type="text" id="countrySearch" placeholder="Search countries..." bind:this={inputElement}>
+  <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
 <div id="tooltip" style="position: absolute; opacity: 0; background-color: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="960" height="500"></svg>
