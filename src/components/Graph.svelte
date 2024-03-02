@@ -176,3 +176,13 @@
   we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on plot. It 
   shows the country and the temperature change when the cursor is hovered over the line.
 </p>
+<h2>The most challenging part to design</h2>
+<p> The most challenging aspect of the project to design is likely to be the development of an effective mechanism for handling
+ missing values, specifically the logic of backfilling these gaps with the most recent year's temperature change data. 
+ This process is not only crucial for maintaining the integrity of the dataset but also poses a risk of introducing biases
+  that could distort the analysis. Additionally, the integration of a search box that interacts seamlessly with the visualization
+   requires careful consideration of both the user interface and the underlying data handling, ensuring that the system can respond
+    dynamically to user queries without performance lags. Lastly, crafting a new technique to dynamically display an editable 
+    list of countries, complete with a functionality to add or remove entries, presents a significant UI/UX challenge that 
+    demands a sophisticated approach to design and implementation.
+</p>
