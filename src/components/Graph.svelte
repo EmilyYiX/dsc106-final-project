@@ -141,22 +141,24 @@
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
 <div id="tooltip" style="position: absolute; opacity: 0; background-color: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
-<svg bind:this={svg} width="960" height="500"></svg>
-<h1>Writeup</h1>
-<h2>What have we done so far?</h2>
-<p>So far we have setup the project on github and created a basic line plot. We have cleaned the datasets according to the 
-  functionality that we want to implement. As part of cleaning we have dealt with missing values and column labels. We have also 
-  implemented a search box to search for a country and see its temperature change over the years. This is one interactive element 
-  we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on plot. It 
-  shows the country and the temperature change when the cursor is hovered over the line.
-</p>
-<h2>The most challenging part to design</h2>
-<p> The most challenging aspect of the project to design is likely to be the development of an effective mechanism for handling
- missing values, specifically the logic of backfilling these gaps with the most recent year's temperature change data. 
- This process is not only crucial for maintaining the integrity of the dataset but also poses a risk of introducing biases
-  that could distort the analysis. Additionally, the integration of a search box that interacts seamlessly with the visualization
-   requires careful consideration of both the user interface and the underlying data handling, ensuring that the system can respond
-    dynamically to user queries without performance lags. Lastly, crafting a new technique to dynamically display an editable 
-    list of countries, complete with a functionality to add or remove entries, presents a significant UI/UX challenge that 
-    demands a sophisticated approach to design and implementation.
-</p>
+<svg bind:this={svg} width="960" height="500" class="roboto-regular"></svg>
+<div class="roboto-regular">
+  <h1>Writeup</h1>
+  <h2>What have we done so far?</h2>
+  <p>So far we have setup the project on github and created a basic line plot. We have cleaned the datasets according to the 
+    functionality that we want to implement. As part of cleaning we have dealt with missing values and column labels. We have also 
+    implemented a search box to search for a country and see its temperature change over the years. This is one interactive element 
+    we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on plot. It 
+    shows the country and the temperature change when the cursor is hovered over the line.
+  </p>
+  <h2>The most challenging part to design</h2>
+  <p> The most challenging aspect of the project to design is likely to be the development of an effective mechanism for handling
+  missing values, specifically the logic of backfilling these gaps with the most recent year's temperature change data. 
+  This process is not only crucial for maintaining the integrity of the dataset but also poses a risk of introducing biases
+    that could distort the analysis. Additionally, the integration of a search box that interacts seamlessly with the visualization
+    requires careful consideration of both the user interface and the underlying data handling, ensuring that the system can respond
+      dynamically to user queries without performance lags. Lastly, crafting a new technique to dynamically display an editable 
+      list of countries, complete with a functionality to add or remove entries, presents a significant UI/UX challenge that 
+      demands a sophisticated approach to design and implementation.
+  </p>
+</div>
