@@ -126,8 +126,8 @@
       const yCoord = y(closestTempChange);
       d3.select('#tooltip')
       .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>Temperature Change: ${closestTempChange}°C`)
-      .style('left', `${xCoord}px`)
-      .style('top', `${yCoord}px`)
+      .style('left', `${xCoord + svg.getBoundingClientRect().x}px`)
+      .style('top', `${yCoord + svg.getBoundingClientRect().y}px`)
       .style('opacity', 1);
       
     }
@@ -176,11 +176,11 @@
   }
 
 </script>
-
+<h1 class="roboto-regular">How Has Climate Change Affected Temperature?</h1>
 <div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
-<div id="tooltip" style="position: absolute; opacity: 0; background-color: rgba(255, 255, 255, 0.5); border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
+<div id="tooltip" class="roboto-regular" style="position: absolute; opacity: 0; background-color: rgba(255, 255, 255, 0.5); border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="960" height="500" class="roboto-regular"></svg>
 <div class="roboto-regular">
   <h1>Writeup</h1>
