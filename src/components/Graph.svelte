@@ -187,19 +187,19 @@
 <div class="roboto-regular">
   <h1>Writeup</h1>
   <h2>What have we done so far?</h2>
-  <p>So far we have setup the project on github and created a basic line plot. We have cleaned the datasets according to the 
+  <p>So far we have set up the project on GitHub and created a basic line plot. We have cleaned the dataset according to the 
     functionality that we want to implement. As part of cleaning we have dealt with missing values and column labels. We have also 
-    implemented a search box to search for a country and see its temperature change over the years. This is one interactive element 
-    we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on plot. It 
-    shows the country and the temperature change when the cursor is hovered over the line.
+    implemented a search box to search for a country and see its temperature change over the years. That was one interactive element 
+    we have implemented. Another interactive element that we have implemented is the tooltip information for the lines on the plot. It 
+    shows the country and the temperature change of the nearest country's line.
   </p>
-  <h2>The most challenging part to design</h2>
-  <p> The most intricate part of the project design is likely the creation of an efficient strategy for addressing missing values,
-   particularly by devising a logic to backfill these voids with the latest available data on temperature change. This is pivotal
+  <h2>What was the most challenging part to design?</h2>
+  <p> The most intricate part of the project designw was the creation of an efficient strategy for addressing missing values,
+    particularly by devising a logic to backfill these voids with the latest available data on temperature change. This is pivotal
     for preserving the dataset's integrity and avoiding potential biases that could skew the analysis. Moreover, the implementation
-     of an intuitive search feature that aligns smoothly with the data visualization is vital. It must accommodate user input
-      without noticeable delays, ensuring a responsive and seamless experience. Finally, developing an innovative method to manage 
-      a dynamic list of countries, which allows for easy editing, addition, and deletion, represents a significant UI/UX design
-       challenge that necessitates a refined and strategic approach to both design and execution.
+    of an intuitive search feature that aligns smoothly with the data visualization is vital. It must accommodate user input
+    without noticeable delays, ensuring a responsive and seamless experience. Finally, developing an innovative method to manage 
+    a dynamic list of countries, which allows for easy editing, addition, and deletion, represents a significant UI/UX design
+    challenge that necessitates a refined and strategic approach to both design and execution.
   </p>
 </div>
