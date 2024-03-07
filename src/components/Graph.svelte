@@ -91,7 +91,58 @@
 
     // Initial chart update with filtered data
     updateChart(restructureData(filteredData));
+
+    d3.select(svg)
+      .on("pointerenter", pointerentered)
+      .on("pointerleave", pointerleft)
+      .on("pointermove", pointermoved);
 });
+
+  function pointermoved(event) {
+    if (selected.length == 0) {
+      return;
+    }
+    const [xm, ym] = d3.pointer(event, this); // Get the mouse position relative to the SVG element
+    let hoveredCountry = null;
+    let closestDistance = Infinity;
+    let closestYear = null;
+    let closestTempChange = null;
+
+    filteredData.forEach((e) => {
+        const xCoord = x(e.year);
+        const yCoord = y(e.tempChange);
+        const distance = Math.sqrt((xm - xCoord) ** 2 + (ym - yCoord) ** 2);
+        if (distance < closestDistance){
+          closestDistance = distance;
+          hoveredCountry = e.country;
+          closestYear = e.year
+          closestTempChange = e.tempChange;
+        }
+      }
+    )
+
+    if (hoveredCountry) {
+      const xCoord = x(closestYear);
+      const yCoord = y(closestTempChange);
+      d3.select('#tooltip')
+      .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>Temperature Change: ${closestTempChange}°C`)
+      .style('left', `${xCoord}px`)
+      .style('top', `${yCoord}px`)
+      .style('opacity', 1);
+      
+    }
+  }
+
+  function pointerentered() {
+    if (selected.length == 0) {
+      return;
+    }
+    d3.select('#tooltip').style("opacity", 1);
+  }
+
+  function pointerleft() {
+    d3.select('#tooltip').style("opacity", 0);
+  }
 
   // Function to update the chart based on selected countries or search
   function updateChart(newData) {
@@ -104,20 +155,6 @@
     .attr('fill', 'none')
     .attr('stroke', (d, i) => d3.schemeCategory10[i % 10]) // Optional: Use different colors for lines
     .attr('stroke-width', 1.5)
-    .on('mouseover', function() { d3.select('#tooltip').style('opacity', 1); })
-    .on('mousemove', function(event, d) {
-      const xPosition = d3.pointer(event, this)[0];
-      const year = Math.round(x.invert(xPosition));
-      const dataPoint = d.values.find(v => v.year === year);
-      if (dataPoint) {
-        d3.select('#tooltip')
-        .html(`Country: ${d.country}<br>Year: ${dataPoint.year}<br>Temperature Change: ${dataPoint.tempChange}°C`)
-        .style('left', `${event.pageX + 10}px`)
-        .style('top', `${event.pageY + 10}px`)
-        .style('opacity', 1);
-      }
-    })
-    .on('mouseout', function() { d3.select('#tooltip').style('opacity', 0); });
 
     // Update existing lines (if any)
     lines.attr('d', d => line(d.values));
@@ -130,6 +167,9 @@
     if (event.detail && event.detail.type == 'removeAll'){
       selected = [];
     }
+    if (selected.length == 0) {
+      d3.select('#tooltip').style("opacity", 0);
+    }
     filteredData = getFilteredData();
     let restructuredData = restructureData(filteredData);
     updateChart(restructuredData);
@@ -140,7 +180,7 @@
 <div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
-<div id="tooltip" style="position: absolute; opacity: 0; background-color: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
+<div id="tooltip" style="position: absolute; opacity: 0; background-color: rgba(255, 255, 255, 0.5); border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="960" height="500" class="roboto-regular"></svg>
 <div class="roboto-regular">
   <h1>Writeup</h1>
