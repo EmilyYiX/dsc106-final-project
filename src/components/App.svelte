@@ -37,25 +37,26 @@
   }
 
   function fillMissingValues(data) {
+    let finalData = [];
     // Group data by country
     let groupedByCountry = d3.group(data, d => d.country);
 
     groupedByCountry.forEach((values, country) => {
       let lastKnownValue = undefined;
       values.sort((a, b) => a.year - b.year); // Ensure the data is sorted by year
-
       for (let entry of values) {
         if (entry.tempChange !== undefined) {
           lastKnownValue = entry.tempChange;
+          finalData.push(entry);
         } else if (lastKnownValue !== undefined) {
           entry.tempChange = lastKnownValue; // Fill missing value with last known value
+          finalData.push(entry);
         }
-        // If the first year(s) for a country are missing, they will remain undefined
       }
     });
 
     // Convert the Map back to array format
-    return Array.from(groupedByCountry.values()).flat();
+    return finalData;
   }
 </script>
 
