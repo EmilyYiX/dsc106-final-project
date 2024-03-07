@@ -29,8 +29,8 @@
   onMount(() => {
     filteredData = getFilteredData();
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-    const width = 960 - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
+    const width = 1200 - margin.left - margin.right;
+    const height = 600 - margin.top - margin.bottom;
 
     // Define scales
     x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
@@ -176,12 +176,14 @@
   }
 
 </script>
-<h1 class="roboto-regular">How Has Climate Change Affected Temperature?</h1>
-<div style="margin-top: 20px;"> <!-- Added margin-top to move the input box down -->
+<div style="background-color: #5F5D9C">
+  <h1 class="roboto-regular" style="display: block; margin: auto; text-align: center; color: #ffffff">How Has Climate Change Affected Temperature?</h1>
+</div>
+<div style="margin-top: 10px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
 <div id="tooltip" class="roboto-regular" style="position: absolute; opacity: 0; background-color: rgba(255, 255, 255, 0.5); border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
-<svg bind:this={svg} width="960" height="500" class="roboto-regular"></svg>
+<svg bind:this={svg} width="1200" height="600" class="roboto-regular" style="display: block; margin: auto"></svg>
 <div class="roboto-regular">
   <h1>Writeup</h1>
   <h2>What have we done so far?</h2>
