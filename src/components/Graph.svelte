@@ -194,7 +194,7 @@
     shows the country and the temperature change of the nearest country's line.
   </p>
   <h2>What was the most challenging part to design?</h2>
-  <p> The most intricate part of the project designw was the creation of an efficient strategy for addressing missing values,
+  <p> The most intricate part of the project design was the creation of an efficient strategy for addressing missing values,
     particularly by devising a logic to backfill these voids with the latest available data on temperature change. This is pivotal
     for preserving the dataset's integrity and avoiding potential biases that could skew the analysis. Moreover, the implementation
     of an intuitive search feature that aligns smoothly with the data visualization is vital. It must accommodate user input
