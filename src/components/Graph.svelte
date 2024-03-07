@@ -194,12 +194,11 @@
     shows the country and the temperature change of the nearest country's line.
   </p>
   <h2>What was the most challenging part to design?</h2>
-  <p> The most intricate part of the project design was the creation of an efficient strategy for addressing missing values,
-    particularly by devising a logic to backfill these voids with the latest available data on temperature change. This is pivotal
-    for preserving the dataset's integrity and avoiding potential biases that could skew the analysis. Moreover, the implementation
-    of an intuitive search feature that aligns smoothly with the data visualization is vital. It must accommodate user input
-    without noticeable delays, ensuring a responsive and seamless experience. Finally, developing an innovative method to manage 
-    a dynamic list of countries, which allows for easy editing, addition, and deletion, represents a significant UI/UX design
-    challenge that necessitates a refined and strategic approach to both design and execution.
+  <p> The most challenging aspect of the project to design is likely to be  handle missing values, specifically the logic of 
+  back-filling these gaps with the most recent year's temperature change data. This process is  significant for maintaining the 
+  integrity of the dataset and ensuring the smoothness of temperature change over time. Additionally, the integration of a search 
+  box that interacts seamlessly with the visualization also took us a lot of effort to debug to achieve the effect that the system 
+  can respond dynamically to user queries without lags and errors. Besides that,  we are using 'multiselect' library to assist us 
+  on displaying an editable list of countries, complete with a functionality to add or remove entries in our visualization.  
   </p>
 </div>
