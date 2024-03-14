@@ -6,8 +6,8 @@
   export let data;
   let svg;
   let displayedData = [];
-  let countries = ["Afghanistan, Islamic Rep. of", "Albania", "Algeria", "American Samoa", "Andorra, Principality of", "Angola", "Anguilla", "Antigua and Barbuda", "Argentina", "Armenia, Rep. of", "Aruba, Kingdom of the Netherlands", "Australia", "Austria", "Azerbaijan, Rep. of", "Bahamas, The", "Bahrain, Kingdom of", "Bangladesh", "Barbados", "Belarus, Rep. of", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Cayman Islands", "Central African Rep.", "Chad", "Chile", "China, P.R.: Hong Kong", "China, P.R.: Macao", "China, P.R.: Mainland", "Colombia", "Comoros, Union of the", "Congo, Dem. Rep. of the", "Congo, Rep. of", "Cook Islands", "Costa Rica", "Croatia, Rep. of", "Cuba", "Cyprus", "Czech Rep.", "Denmark", "Djibouti", "Dominica", "Dominican Rep.", "Ecuador", "Egypt, Arab Rep. of", "El Salvador", "Equatorial Guinea, Rep. of", "Eritrea, The State of", "Estonia, Rep. of", "Eswatini, Kingdom of", "Ethiopia, The Federal Dem. Rep. of", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji, Rep. of", "Finland", "France", "French Polynesia", "Gabon", "Gambia, The", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Rep. of", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan, Rep. of", "Kenya", "Kiribati", "Korea, Dem. People's Rep. of", "Korea, Rep. of", "Kuwait", "Kyrgyz Rep.", "Lao People's Dem. Rep.", "Latvia", "Lebanon", "Lesotho, Kingdom of", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar, Rep. of", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands, Rep. of the", "Martinique", "Mauritania, Islamic Rep. of", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Rep. of", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique, Rep. of", "Myanmar", "Namibia", "Nauru, Rep. of", "Nepal", "Netherlands, The", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Macedonia, Republic of ", "Norway", "Oman", "Pakistan", "Palau, Rep. of", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland, Rep. of", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Pierre and Miquelon", "Samoa", "San Marino, Rep. of", "São Tomé and Príncipe, Dem. Rep. of", "Saudi Arabia", "Senegal", "Serbia, Rep. of", "Seychelles", "Sierra Leone", "Singapore", "Slovak Rep.", "Slovenia, Rep. of", "Solomon Islands", "Somalia", "South Africa", "South Sudan, Rep. of", "Spain", "Sri Lanka", "St. Kitts and Nevis", "St. Lucia", "St. Vincent and the Grenadines", "Sudan", "Suriname", "Sweden", "Switzerland", "Syrian Arab Rep.", "Taiwan Province of China", "Tajikistan, Rep. of", "Tanzania, United Rep. of", "Thailand", "Timor-Leste, Dem. Rep. of", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Virgin Islands", "Uruguay", "Uzbekistan, Rep. of", "Vanuatu", "Venezuela, Rep. Bolivariana de", "Vietnam", "Wallis and Futuna Islands", "West Bank and Gaza", "Western Sahara", "World", "Yemen, Rep. of", "Zambia", "Zimbabwe"]
-  let selected = ['Brazil', 'Nigeria', 'Pakistan', 'Indonesia', 'United States', 'China, P.R.: Mainland', 'India'];
+  let countries = ['Afghanistan', 'Africa', 'Albania', 'Algeria', 'Andorra', 'Angola','Anguilla', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba','Asia', 'Asia (excl. China and India)', 'Australia', 'Austria','Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados','Belarus', 'Belgium', 'Belize', 'Benin', 'Bermuda', 'Bhutan','Bolivia', 'Bonaire Sint Eustatius and Saba','Bosnia and Herzegovina', 'Botswana', 'Brazil','British Virgin Islands', 'Brunei', 'Bulgaria', 'Burkina Faso','Burundi', 'Cambodia', 'Cameroon', 'Canada', 'Cape Verde','Central African Republic', 'Chad', 'Chile', 'China', 'Colombia','Comoros', 'Congo', 'Cook Islands', 'Costa Rica', "Cote d'Ivoire",'Croatia', 'Cuba', 'Curacao', 'Cyprus', 'Czechia','Democratic Republic of Congo', 'Denmark', 'Djibouti', 'Dominica','Dominican Republic', 'East Timor', 'Ecuador', 'Egypt','El Salvador', 'Equatorial Guinea', 'Eritrea', 'Estonia','Eswatini', 'Ethiopia', 'Europe', 'Europe (excl. EU-27)','Europe (excl. EU-28)', 'European Union (27)','European Union (28)', 'Faroe Islands', 'Fiji', 'Finland','France', 'French Polynesia', 'Gabon', 'Gambia', 'Georgia','Germany', 'Ghana', 'Greece', 'Greenland', 'Grenada', 'Guatemala','Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti','High-income countries', 'Honduras', 'Hong Kong', 'Hungary','Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland','Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan','Kenya', 'Kiribati', 'Kosovo', 'Kuwait', 'Kyrgyzstan', 'Laos','Latvia', 'Lebanon', 'Lesotho', 'Liberia', 'Libya','Liechtenstein', 'Lithuania', 'Low-income countries','Lower-middle-income countries', 'Luxembourg', 'Macao','Madagascar', 'Malawi', 'Malaysia', 'Maldives', 'Mali', 'Malta','Marshall Islands', 'Mauritania', 'Mauritius', 'Mexico','Micronesia (country)', 'Moldova', 'Mongolia', 'Montenegro','Montserrat', 'Morocco', 'Mozambique', 'Myanmar', 'Namibia','Nauru', 'Nepal', 'Netherlands', 'New Caledonia', 'New Zealand','Nicaragua', 'Niger', 'Nigeria', 'Niue', 'North America','North America (excl. USA)', 'North Korea', 'North Macedonia','Norway', 'Oceania', 'Oman', 'Pakistan', 'Palau', 'Palestine','Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines','Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda','Saint Helena', 'Saint Kitts and Nevis', 'Saint Lucia','Saint Pierre and Miquelon', 'Saint Vincent and the Grenadines','Samoa', 'Sao Tome and Principe', 'Saudi Arabia', 'Senegal','Serbia', 'Seychelles', 'Sierra Leone', 'Singapore','Sint Maarten (Dutch part)', 'Slovakia', 'Slovenia','Solomon Islands', 'Somalia', 'South Africa', 'South America','South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan','Suriname', 'Sweden', 'Switzerland', 'Syria', 'Taiwan','Tajikistan', 'Tanzania', 'Thailand', 'Togo', 'Tonga','Trinidad and Tobago', 'Tunisia', 'Turkey', 'Turkmenistan','Turks and Caicos Islands', 'Tuvalu', 'Uganda', 'Ukraine','United Arab Emirates', 'United Kingdom', 'United States','Upper-middle-income countries', 'Uruguay', 'Uzbekistan','Vanuatu', 'Venezuela', 'Vietnam', 'Wallis and Futuna', 'World','Yemen', 'Zambia', 'Zimbabwe']
+  let selected = ['Brazil', 'Nigeria', 'Pakistan', 'Indonesia', 'United States', 'China', 'India'];
   let svgElement;
   let line;
   let x;
@@ -34,7 +34,7 @@
 
     // Define scales
     x = d3.scaleLinear().domain(d3.extent(data, d => d.year)).range([0, width]);
-    y = d3.scaleLinear().domain([d3.min(data, d => d.tempChange), d3.max(data, d => d.tempChange)]).range([height, 0]);
+    y = d3.scaleLinear().domain([d3.min(data, d => d.co2Emissions), 30]).range([height, 0]);
 
     // Define axes
     const xAxis = d3.axisBottom(x).tickFormat(d3.format('d'));
@@ -43,7 +43,7 @@
     // Define the line generator
     line = d3.line()
       .x(d => x(d.year))
-      .y(d => y(d.tempChange));
+      .y(d => y(d.co2Emissions));
 
     // Append SVG container
     svgElement = d3.select(svg).append('g')
@@ -72,7 +72,7 @@
               .attr("x", 0 - (height / 2))
               .attr("dy", "1em")
               .style("text-anchor", "middle")
-              .text("Temperature Change (°C)");
+              .text("CO2 Change");
 
     // Append chart title
     svgElement.append("text")
@@ -81,7 +81,7 @@
               .attr("text-anchor", "middle")  
               .style("font-size", "16px") 
               .style("text-decoration", "underline")  
-              .text("Temperature Change (°C) Over Years Globally");
+              .text("CO2 Change Over Years Globally");
 
     // Append axes to the SVG container
     svgElement.append('g')
@@ -106,26 +106,26 @@
     let hoveredCountry = null;
     let closestDistance = Infinity;
     let closestYear = null;
-    let closestTempChange = null;
+    let closestco2 = null;
 
     filteredData.forEach((e) => {
         const xCoord = x(e.year);
-        const yCoord = y(e.tempChange);
+        const yCoord = y(e.co2Emissions);
         const distance = Math.sqrt((xm - xCoord) ** 2 + (ym - yCoord) ** 2);
         if (distance < closestDistance){
           closestDistance = distance;
           hoveredCountry = e.country;
           closestYear = e.year
-          closestTempChange = e.tempChange;
+          closestco2 = e.co2Emissions;
         }
       }
     )
 
     if (hoveredCountry) {
       const xCoord = x(closestYear);
-      const yCoord = y(closestTempChange);
+      const yCoord = y(closestco2);
       d3.select('#tooltip')
-      .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>Temperature Change: ${closestTempChange}°C`)
+      .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>CO2 Emissions: ${closestco2}°C`)
       .style('left', `${xCoord + svg.getBoundingClientRect().x}px`)
       .style('top', `${yCoord + svg.getBoundingClientRect().y}px`)
       .style('opacity', 1);
@@ -176,9 +176,7 @@
   }
 
 </script>
-<div style="background-color: #5F5D9C">
-  <h1 class="roboto-regular" style="display: block; margin: auto; text-align: center; color: #ffffff">How Has Climate Change Affected Temperature?</h1>
-</div>
+
 <div style="margin-top: 10px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
