@@ -1,4 +1,4 @@
-<div class="roboto-regular">
+<!-- <div class="roboto-regular">
     <h1>Writeup</h1>
     <h2>What have we done so far?</h2>
     <p>So far we have set up the project on GitHub and created a basic line plot. We have cleaned the dataset according to the 
@@ -15,4 +15,4 @@
     can respond dynamically to user queries without lags and errors. Besides that,  we are using 'multiselect' library to assist us 
     on displaying an editable list of countries, complete with a functionality to add or remove entries in our visualization.  
     </p>
-  </div>
+  </div> -->

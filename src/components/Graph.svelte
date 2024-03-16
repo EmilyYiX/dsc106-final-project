@@ -179,8 +179,38 @@
 <div style="background-color: #5F5D9C">
   <h1 class="roboto-regular" style="display: block; margin: auto; text-align: center; color: #ffffff">How Has Climate Change Affected Temperature?</h1>
 </div>
+<div
+style="
+    background-color: #f2f2f2; /* Light grey background */
+    border-left: 6px solid #2c3e50; /* Dark blue left border */
+    font-family: 'Arial', sans-serif; /* Clean font choice */
+    margin: 10px 0; /* Margin for spacing */
+    padding: 10px; /* Padding for space inside the div */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 4px; /* Rounded corners */
+    line-height: 1.6; /* Improve line spacing */
+"
+>
+  Our world is constantly changing and its not for the good. Extreme weathers like sheer cold or continuous burning days can be a reality. This is because the carbon dioxide emissions by us humans is causing temperature changes that is affecting the climate
+</div>
 <div style="margin-top: 10px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
 <div id="tooltip" class="roboto-regular" style="position: absolute; opacity: 0; background-color: rgba(255, 255, 255, 0.5); border: 1px solid #ddd; padding: 10px; border-radius: 4px; pointer-events: none; font-size: 14px;"></div>
 <svg bind:this={svg} width="1200" height="600" class="roboto-regular" style="display: block; margin: auto"></svg>
+<div
+style="
+    background-color: #f2f2f2; /* Light grey background */
+    border-left: 6px solid #2c3e50; /* Dark blue left border */
+    font-family: 'Arial', sans-serif; /* Clean font choice */
+    margin: 10px 0; /* Margin for spacing */
+    padding: 10px; /* Padding for space inside the div */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 4px; /* Rounded corners */
+    line-height: 1.6; /* Improve line spacing */
+"
+>
+  Looking at the trend of carbon dioxide emissions for the United states in the above visualization, we can observe that there are significant spikes in carbon dioxide emissions during the times 1960-70s, 1980-90's, and 2000-2006. Early 1960's was the period post world war II where Unites states saw increased manufacturing and industrial expansion. In 1962 we saw the "Silent Spring" in 1962 and Cuyahoga River fire in 1969. These could be reasons for the spikes during the 1960's.
+  Early 1980's saw a gradual shift from coal to natural gas and nuclear energy, driven by environmental policies and economic factors. During this period United States saw that the carbon dioxide emissions were increasing and introduced amendments to the Clean Air Act in 1990 to address acid rain, toxic emissions, and ozone depletion. These significant events explain the spikes during this period.
+  The early 2000s saw significant advances in technology, including the increased efficiency of vehicles and industrial processes. Vehicles and the energy released by technology plants are massive source of carbon dioxide emissions, explaining the spikes in the early 2000's
+</div>
