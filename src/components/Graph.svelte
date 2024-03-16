@@ -176,23 +176,7 @@
   }
 
 </script>
-<div style="background-color: #5F5D9C">
-  <h1 class="roboto-regular" style="display: block; margin: auto; text-align: center; color: #ffffff">How Has Climate Change Affected Temperature?</h1>
-</div>
-<div
-style="
-    background-color: #f2f2f2; /* Light grey background */
-    border-left: 6px solid #2c3e50; /* Dark blue left border */
-    font-family: 'Arial', sans-serif; /* Clean font choice */
-    margin: 10px 0; /* Margin for spacing */
-    padding: 10px; /* Padding for space inside the div */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 4px; /* Rounded corners */
-    line-height: 1.6; /* Improve line spacing */
-"
->
-  Our world is constantly changing and its not for the good. Extreme weathers like sheer cold or continuous burning days can be a reality. This is because the carbon dioxide emissions by us humans is causing temperature changes that is affecting the climate
-</div>
+
 <div style="margin-top: 10px;"> <!-- Added margin-top to move the input box down -->
   <MultiSelect bind:selected options={countries} on:change={update} />
 </div>
@@ -210,7 +194,21 @@ style="
     line-height: 1.6; /* Improve line spacing */
 "
 >
-  Looking at the trend of carbon dioxide emissions for the United states in the above visualization, we can observe that there are significant spikes in carbon dioxide emissions during the times 1960-70s, 1980-90's, and 2000-2006. Early 1960's was the period post world war II where Unites states saw increased manufacturing and industrial expansion. In 1962 we saw the "Silent Spring" in 1962 and Cuyahoga River fire in 1969. These could be reasons for the spikes during the 1960's.
-  Early 1980's saw a gradual shift from coal to natural gas and nuclear energy, driven by environmental policies and economic factors. During this period United States saw that the carbon dioxide emissions were increasing and introduced amendments to the Clean Air Act in 1990 to address acid rain, toxic emissions, and ozone depletion. These significant events explain the spikes during this period.
-  The early 2000s saw significant advances in technology, including the increased efficiency of vehicles and industrial processes. Vehicles and the energy released by technology plants are massive source of carbon dioxide emissions, explaining the spikes in the early 2000's
+  The observed spikes in CO2 emissions during the specified periods coincide with increases in global surface temperatures. This shows the significant impact of human activities on the Earth's climate. The temperature increases aligning with CO2 spikes in the 1960s-70s, 1980s-90s, and early 2000s also show us that as human actions have intensified in terms of industrial output and energy consumption, so too has their imprint on global climate patterns. This relation between carbon dioxide emissions and temperature changes is not coincidental but a reflection of carbon dioxide emissions by us humans is causing temperature changes that is affecting the climate. 
+United States just serves as an example of this parallel increase. This relation can be seen for any country that you select. This is also the reason for the features and interactivity that out visualizations have, to show that carbon dioxide emission due to human activity case temperature changes all over the world.
+</div>
+<h3>Conclusion</h3>
+<div
+style="
+    background-color: #f2f2f2; /* Light grey background */
+    border-left: 6px solid #2c3e50; /* Dark blue left border */
+    font-family: 'Arial', sans-serif; /* Clean font choice */
+    margin: 10px 0; /* Margin for spacing */
+    padding: 10px; /* Padding for space inside the div */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 4px; /* Rounded corners */
+    line-height: 1.6; /* Improve line spacing */
+"
+>
+  These trends between CO2 emissions and temperature changes highlight the urgency for adopting sustainable practices and policies that can reverse or mitigate these impacts. It is becoming evident it is collective responsibility to do something about climate change and not just wait for the environment to correct it itself. The story told by our visualizations is clear: by understanding our past and present, we can help reverse this climate changes. Our goal was not just to present this data but to call for action that will create a better world for us to live in the future.
 </div>

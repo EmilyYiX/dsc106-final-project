@@ -4,6 +4,6 @@
   import WriteUp from '../components/WriteUp.svelte';
 </script>
 
-<App />
 <CO2EmissionsGraph />
+<App />
 <WriteUp />
