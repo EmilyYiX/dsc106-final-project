@@ -125,9 +125,9 @@
       const xCoord = x(closestYear);
       const yCoord = y(closestco2);
       d3.select('#tooltip')
-      .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>CO2 Emissions: ${closestco2}°C`)
+      .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>CO2 Emissions: ${closestco2}`)
       .style('left', `${xCoord + svg.getBoundingClientRect().x}px`)
-      .style('top', `${yCoord + 700}px`)
+      .style('top', `${yCoord + svg.getBoundingClientRect().y}px`)
       .style('opacity', 1);
       
     }

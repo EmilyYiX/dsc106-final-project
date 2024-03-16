@@ -127,7 +127,7 @@
       d3.select('#tooltip')
       .html(`Country: ${hoveredCountry}<br>Year: ${closestYear}<br>Temperature Change: ${closestTempChange}°C`)
       .style('left', `${xCoord + svg.getBoundingClientRect().x}px`)
-      .style('top', `${yCoord + svg.getBoundingClientRect().y}px`)
+      .style('top', `${yCoord + 900}px`)
       .style('opacity', 1);
       
     }
